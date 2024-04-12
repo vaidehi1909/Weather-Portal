@@ -138,9 +138,9 @@ const WeatherForecast = (props: WeatherForecastProps) => {
             <h1>Weather Forecast</h1>
           </Col>
           <Col style={{ textAlign: "center", marginLeft: "5px" }}>
-            <h4>
+            <h2>
               - {data?.city?.name}, {data?.city?.country}
-            </h4>
+            </h2>
           </Col>
         </Row>
         <div>
