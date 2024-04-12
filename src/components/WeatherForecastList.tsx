@@ -132,7 +132,7 @@ const WeatherForecast = (props: WeatherForecastProps) => {
 
   return (
     <>
-      <Card>
+      <Card style={{ marginBottom: "10px" }}>
         <Row align={"middle"}>
           <Col>
             <h1>Weather Forecast</h1>

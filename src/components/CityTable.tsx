@@ -73,7 +73,6 @@ const CityTable = (props: CityTableProps) => {
         // x: 2000,
         y: 400,
       }}
-      style={{ padding: 20 }}
       rowKey="geoname_id"
       dataSource={data?.results || []}
       pagination={false}
