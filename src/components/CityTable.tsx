@@ -22,6 +22,7 @@ const columns: TableColumnsType<CityRecord> = [
     title: "Location",
     dataIndex: "name",
     defaultSortOrder: "ascend",
+    align: "center",
     sorter: true,
     render: (text, record) => (
       <NavLink
@@ -34,11 +35,19 @@ const columns: TableColumnsType<CityRecord> = [
     title: "Country",
     dataIndex: "label_en",
     sorter: true,
+    align: "center",
   },
   {
     title: "Timezone",
     dataIndex: "timezone",
     sorter: true,
+    align: "center",
+  },
+  {
+    title: "Population",
+    dataIndex: "population",
+    sorter: true,
+    align: "center",
   },
 ];
 
@@ -54,7 +63,7 @@ const CityTable = (props: CityTableProps) => {
     }
   };
 
-  const onTableChange: OnChange = (pagination, filters, sorter, extra) => {
+  const onTableChange: OnChange = (_, __, sorter, extra) => {
     if (extra?.action === "sort" && sorter) {
       const { field, order } = sorter as Sorts;
       if (field && order)

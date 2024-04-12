@@ -1,7 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "./App";
-import Home from "./pages/home";
-import Weather from "./pages/weather";
 
 const Router = createBrowserRouter([
   {
@@ -9,15 +7,21 @@ const Router = createBrowserRouter([
     loader: () => {
       return <div>Loading</div>;
     },
-    errorElement: <div>Error</div>,
+    errorElement: <div>Something Went Wrong</div>,
     children: [
       {
         path: "/",
-        element: <Home />,
+        lazy: async () => {
+          let Home = await import("./pages/home")
+          return { Component: Home.default }
+        }
       },
       {
         path: "/weather",
-        element: <Weather />,
+        lazy: async () => {
+          let Weather = await import("./pages/weather")
+          return { Component: Weather.default }
+        }
       },
       {
         path: "*",

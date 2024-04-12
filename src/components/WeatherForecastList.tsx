@@ -22,6 +22,22 @@ interface CollapseLabelProps {
   units: Units;
 }
 
+const colSpan = {
+  xl: { span: 7 },
+  lg: { span: 7 },
+  md: { span: 7 },
+  sm: { span: 12 },
+  xs: { span: 12 },
+};
+
+const otherColSpan = {
+  xl: { span: 4 },
+  lg: { span: 4 },
+  md: { span: 4 },
+  sm: { span: 12 },
+  xs: { span: 12 },
+}
+
 const groupByDay = (list: HourlyForcast[]) => {
   const groups: { [key: string]: HourlyForcast[] } = {};
   list.forEach((item) => {
@@ -41,14 +57,14 @@ const groupByDay = (list: HourlyForcast[]) => {
 const CollapseLabel = ({ record, units }: CollapseLabelProps) => {
   return (
     <Row>
-      <Col span={7}>
-        {new Date(record.dt * 1000).toLocaleDateString("en-US", {
+      <Col {...otherColSpan}>
+        {new Date(record.dt * 1000).toLocaleString("en-US", {
           hour: "numeric",
           minute: "numeric",
           hour12: true,
         })}
       </Col>
-      <Col span={7} style={{ display: "flex", alignItems: "center" }}>
+      <Col {...colSpan} style={{ display: "flex", alignItems: "center" }}>
         <img
           src={
             record.weather[0].main === "Clear"
@@ -66,7 +82,7 @@ const CollapseLabel = ({ record, units }: CollapseLabelProps) => {
         />{" "}
         {record.weather[0].main}
       </Col>
-      <Col span={7} style={{ display: "flex", alignItems: "center" }}>
+      <Col {...colSpan} style={{ display: "flex", alignItems: "center" }}>
         <img
           src={temp}
           alt="temp"
@@ -76,7 +92,7 @@ const CollapseLabel = ({ record, units }: CollapseLabelProps) => {
         />
         {record.main.temp} {UnitTypeMapping[units]}
       </Col>
-      <Col span={3} style={{ display: "flex", alignItems: "center" }}>
+      <Col {...otherColSpan} style={{ display: "flex", alignItems: "center" }}>
         <img
           src={drop}
           alt="drop"
@@ -132,7 +148,7 @@ const WeatherForecast = (props: WeatherForecastProps) => {
 
   return (
     <>
-      <Card style={{ marginBottom: "10px" }}>
+      <Card style={{ marginBottom: "10px" }} styles={{ body: { padding: 10 } }}>
         <Row align={"middle"}>
           <Col>
             <h1>Weather Forecast</h1>

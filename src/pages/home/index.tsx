@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CityTable from "../../components/CityTable"
 import { QueryParams, useFetchCitiesQuery } from "../../services/cityService";
 import SearchBar from '../../components/SearchBar';
+import { Col, Row } from 'antd';
 
 const defaultQueryParams: QueryParams = { 
   page: 0, 
@@ -10,7 +11,7 @@ const defaultQueryParams: QueryParams = {
   order_by: 'name asc' 
 };
 
-const Home = () => {
+const Home: React.FC = () => {
 
   const [queryParams, setQueryParams] = useState<QueryParams>(defaultQueryParams)
   const { data, isFetching, isLoading } = useFetchCitiesQuery(queryParams, { refetchOnMountOrArgChange: true });
@@ -31,6 +32,11 @@ const Home = () => {
 
   return (
     <>
+      <Row align={"middle"} justify={"center"} style={{ marginBottom: "20px", color: "white" }}>
+        <Col span={24}>
+          <div style={{ textAlign: "center", fontWeight: "bold", fontSize: "large" }}>Weather Forecast Location</div>
+        </Col>
+      </Row>
       <SearchBar
         onSearch={onSearch}
       />
