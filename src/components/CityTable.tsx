@@ -48,6 +48,7 @@ const columns: TableColumnsType<CityRecord> = [
     dataIndex: "population",
     sorter: true,
     align: "center",
+    responsive: ['lg']
   },
 ];
 

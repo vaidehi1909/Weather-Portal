@@ -21,7 +21,7 @@ const colSpan = {
   lg: { span: 8 },
   md: { span: 12 },
   sm: { span: 12 },
-  xs: { span: 12 },
+  xs: { span: 24 },
 };
 const colStyle = {
   display: "flex",
