@@ -57,8 +57,9 @@ const CityTable = (props: CityTableProps) => {
 
   const onScroll = (e: UIEvent<Element>) => {
     if (data && data?.total_count > data?.results.length) {
-      const { scrollTop, clientHeight } = e.target as Element;
-      if (scrollTop / clientHeight > page) {
+      const { scrollTop, clientHeight, scrollHeight } = e.target as Element;
+      const bottomToScroll = Math.abs(scrollHeight - (scrollTop + clientHeight)) <= 1
+      if (bottomToScroll) {
         onPageChanged(page + 1);
       }
     }
