@@ -3,7 +3,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export interface ApiResponse {
   total_count: number,
   results: CityRecord[],
-  page: number;
 }
 
 interface Coordinates {
@@ -54,15 +53,12 @@ export const cityApi = createApi({
         return `${endpointName}?${JSON.stringify(rest)}`;
       },
       // Always merge incoming data to the cache entry
-      merge: (currentCache: ApiResponse, newItems: ApiResponse) => {
-        if (newItems.page > 1) {
+      merge: (currentCache: ApiResponse, newItems: ApiResponse, { arg: { page } }) => {
+        if (page > 1) {
           currentCache.results.push(...newItems.results);
           return currentCache
         }
         return newItems
-      },
-      transformResponse(baseQueryReturnValue: ApiResponse, _, arg) {
-        return { ...baseQueryReturnValue, page: arg.page }
       },
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }: { currentArg: QueryParams | undefined, previousArg: QueryParams | undefined }) {
